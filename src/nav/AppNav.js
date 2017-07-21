@@ -9,6 +9,7 @@ import {StackNavigator} from 'react-navigation';
 
 import IndexPage from '../page/IndexPage';
 import HomePage from '../page/HomePage';
+import MovieDetailPage from '../page/MovieDetailPage';
 
 import {
     View,
@@ -26,7 +27,15 @@ const AppNav = StackNavigator({
             screen: HomePage,
             navigationOptions: ({navigation}) => ({
                 header: (
-                    <View style={{height: 56}}/>
+                    <View style={{height: 56,backgroundColor:'#33BC61'}}/>
+                )
+            })
+        },
+        MovieDetail: {
+            screen: MovieDetailPage,
+            navigationOptions: ({navigation}) => ({
+                header: (
+                    <View style={{height: 0, backgroundColor: 'green'}}/>
                 )
             })
         }

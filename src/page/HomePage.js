@@ -14,9 +14,8 @@ import HomeNav from '../nav/HomeNav';
 export default class HomePage extends Component {
     render() {
         return (
-            <HomeNav style={styles.index}>
-                screenProps={{appNavigation: this.props.navigation,}}
-            </HomeNav>
+            <HomeNav style={styles.index}
+                     screenProps={{appNavigation: this.props.navigation,}}/>
         );
     }
 }

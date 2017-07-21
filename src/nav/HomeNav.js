@@ -46,6 +46,9 @@ const HomeNav = TabNavigator({
     tabBarOptions: {
         indicatorStyle: {
             height: 0,
+        },
+        style:{
+            backgroundColor:'#33BC61'
         }
     },
 

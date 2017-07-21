@@ -4,7 +4,7 @@
 export default  class Api {
 
 
-    static Get(url, param, success, fail) {
+     static Get(url, param, success, fail) {
 
         if (param) {
 
