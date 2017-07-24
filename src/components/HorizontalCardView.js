@@ -97,14 +97,13 @@ export default class HorizontalListView extends Component {
         return (
             <View>
                 <FlatList
+                    showsHorizontalScrollIndicator={false}
                     horizontal={true}
                     keyExtractor={this._keyExtractor}
                     data={this.state.subjects}
                     renderItem={this._renderItem}
                     ItemSeparatorComponent={SeparateComponent}
-                >
-
-                </FlatList>
+                />
             </View>
 
         )

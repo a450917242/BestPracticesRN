@@ -92,7 +92,7 @@ export default class MovieDetailPage extends Component {
 
 
     render() {
-
+        let navigation = this.props.navigation;
         if (!this.state.done) {
             return (
                 <View style={styles.container}>
@@ -145,7 +145,7 @@ export default class MovieDetailPage extends Component {
                             fontWeight: 'normal',
                             fontSize: 15,
                             margin: 10
-                        }}>{data.summary}</Text>
+                        }}>{this.state.data.summary}</Text>
                         <Text style={{
                             textAlign: 'left',
                             fontWeight: 'normal',
@@ -154,7 +154,8 @@ export default class MovieDetailPage extends Component {
                             marginTop: 10,
                         }}>影人</Text>
 
-                        <HorizontalSimpleView subjects={this.state.subjects}/>
+                        <HorizontalSimpleView subjects={this.state.subjects}
+                                              navigation={navigation}/>
                     </View>
 
                 </ScrollView>

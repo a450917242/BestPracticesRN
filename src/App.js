@@ -19,9 +19,7 @@ export default class BestPracticesRN extends Component {
 
     render() {
         return (
-            <AppNav
-                screenProps={{navigation: this.props.navigation}}
-                style={{flex: 1,}}/>
+            <AppNav screenProps={{navigation: this.props.navigation}}/>
         );
     }
 }

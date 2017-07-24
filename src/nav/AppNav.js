@@ -10,40 +10,27 @@ import {StackNavigator} from 'react-navigation';
 import IndexPage from '../page/IndexPage';
 import HomePage from '../page/HomePage';
 import MovieDetailPage from '../page/MovieDetailPage';
+import MovieCelebrityPage from '../page/MovieCelebrityPage';
 
-import {
-    View,
-} from 'react-native';
 
 const AppNav = StackNavigator({
         Index: {
             screen: IndexPage,
-            navigationOptions: ({navigation}) => ({
-                header: null,
-            }),
-
         },
         Home: {
             screen: HomePage,
-            navigationOptions: ({navigation}) => ({
-                header: (
-                    <View style={{height: 56,backgroundColor:'#33BC61'}}/>
-                )
-            })
         },
         MovieDetail: {
             screen: MovieDetailPage,
-            navigationOptions: ({navigation}) => ({
-                header: (
-                    <View style={{height: 0, backgroundColor: 'green'}}/>
-                )
-            })
+        },
+        MovieCelebrity:{
+            screen: MovieCelebrityPage,
         }
     },
     {
-        initialRouteName: 'Index', // 默认显示界面
+        initialRouteName: 'Home', // 默认显示界面
         navigationOptions: {  // 屏幕导航的默认选项, 也可以在组件内用 static navigationOptions 设置(会覆盖此处的设置)
-
+            header: null,
             cardStack: {
                 gesturesEnabled: true
             }

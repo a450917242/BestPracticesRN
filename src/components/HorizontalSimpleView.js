@@ -42,9 +42,9 @@ export default class HorizontalSimpleView extends Component {
         <View style={{backgroundColor: 'white'}}>
 
             <TouchableNativeFeedback onPress={() => {
-                // this.props.appNavigation.navigate('MovieDetail', {
-                //     id: item.item.id,
-                // });
+                this.props.navigation.navigate('MovieCelebrity', {
+                    id: item.item.id,
+                });
             }}>
                 <View style={{backgroundColor: 'white', alignItems: 'center', margin: 10}}>
                     <Image resizeMode={'stretch'} style={{width: 120, height: 180}}
@@ -70,6 +70,7 @@ export default class HorizontalSimpleView extends Component {
 
 
     render() {
+
 
         return (
             <View>
