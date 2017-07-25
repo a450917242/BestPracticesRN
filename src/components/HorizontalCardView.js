@@ -9,6 +9,7 @@ import {
     Text,
     Image,
     FlatList,
+    TouchableNativeFeedback,
 } from 'react-native';
 
 
@@ -36,57 +37,68 @@ export default class HorizontalListView extends Component {
 
     _renderItem = (item) => (
 
-        <View style={{backgroundColor: 'white'}}>
-            <View style={{
-                backgroundColor: item.item.background_color,
-                borderRadius: 8,
-                alignItems: 'center',
-                margin: 10,
-                width: 200,
-                height: 200
-            }}>
-                <Text
-                    numberOfLines={1}
-                    style={{
-                        marginTop: 20,
-                        width: 120,
-                        textAlign: 'center',
-                        color: 'white',
-                        fontWeight: 'bold',
-                        fontSize: 20,
-                    }}>{item.item.name}
-                </Text>
-                <Text
-                    numberOfLines={1}
-                    style={{
-                        marginTop: 5,
-                        width: 120,
-                        textAlign: 'center',
-                        color: 'white',
-                        fontWeight: 'normal',
-                        fontSize: 13,
-                    }}>{item.item.description}
-                </Text>
 
 
-                <Image style={{width: 100, height: 100}}>
-                    source={{uri: item.item.covers[0]}}
-                </Image>
+        <TouchableNativeFeedback onPress={() => {
+            this.props.appNavigation.navigate('RankList', {
+                id: item.item.id,
+                name: item.item.name,
+            });
+        }}>
 
-                {/*<View style={{flex: 1, flexDirection: 'row', backgroundColor: 'white'}}>*/}
+
+            <View style={{backgroundColor: 'white'}}>
+                <View style={{
+                    backgroundColor: item.item.background_color,
+                    borderRadius: 8,
+                    alignItems: 'center',
+                    margin: 10,
+                    width: 200,
+                    height: 200
+                }}>
+                    <Text
+                        numberOfLines={1}
+                        style={{
+                            marginTop: 20,
+                            width: 120,
+                            textAlign: 'center',
+                            color: 'white',
+                            fontWeight: 'bold',
+                            fontSize: 20,
+                        }}>{item.item.name}
+                    </Text>
+                    <Text
+                        numberOfLines={1}
+                        style={{
+                            marginTop: 5,
+                            width: 120,
+                            textAlign: 'center',
+                            color: 'white',
+                            fontWeight: 'normal',
+                            fontSize: 13,
+                        }}>{item.item.description}
+                    </Text>
+
+
+                    <Image style={{width: 100, height: 100}}>
+                        source={{uri: item.item.covers[0]}}
+                    </Image>
+
+                    {/*<View style={{flex: 1, flexDirection: 'row', backgroundColor: 'white'}}>*/}
                     {/*<Image style={{width: 50, height: 80}}>*/}
-                        {/*source={{uri: item.item.covers[0]}}*/}
+                    {/*source={{uri: item.item.covers[0]}}*/}
                     {/*</Image>*/}
                     {/*<Image style={{width: 50, height: 80}}>*/}
-                        {/*source={{uri: item.item.covers[1]}}*/}
+                    {/*source={{uri: item.item.covers[1]}}*/}
                     {/*</Image>*/}
                     {/*<Image style={{width: 50, height: 80}}>*/}
-                        {/*source={{uri: item.item.covers[2]}}*/}
+                    {/*source={{uri: item.item.covers[2]}}*/}
                     {/*</Image>*/}
-                {/*</View>*/}
+                    {/*</View>*/}
 
+                </View>
             </View>
-        </View>
+        </TouchableNativeFeedback>
 
     )
 

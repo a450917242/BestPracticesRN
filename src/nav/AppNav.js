@@ -11,6 +11,7 @@ import IndexPage from '../page/IndexPage';
 import HomePage from '../page/HomePage';
 import MovieDetailPage from '../page/MovieDetailPage';
 import MovieCelebrityPage from '../page/MovieCelebrityPage';
+import RankListPage from '../page/RankListPage';
 
 
 const AppNav = StackNavigator({
@@ -23,8 +24,11 @@ const AppNav = StackNavigator({
         MovieDetail: {
             screen: MovieDetailPage,
         },
-        MovieCelebrity:{
+        MovieCelebrity: {
             screen: MovieCelebrityPage,
+        },
+        RankList:{
+            screen:RankListPage,
         }
     },
     {

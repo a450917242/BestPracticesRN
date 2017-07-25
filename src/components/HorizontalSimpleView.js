@@ -75,6 +75,7 @@ export default class HorizontalSimpleView extends Component {
         return (
             <View>
                 <FlatList
+                    showsHorizontalScrollIndicator={false}
                     horizontal={true}
                     keyExtractor={this._keyExtractor}
                     data={this.state.subjects}
