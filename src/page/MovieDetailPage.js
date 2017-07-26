@@ -9,6 +9,7 @@ import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView} from 'react-nat
 
 import HorizontalSimpleView from '../components/HorizontalSimpleView';
 import Api from '../util/Api';
+import RatingCard from "../components/RatingCard";
 
 let data = require('../localdata/only.json');
 
@@ -104,7 +105,7 @@ export default class MovieDetailPage extends Component {
             return (
                 <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
                     <View
-                        style={{height: 300, backgroundColor: 'green', alignItems: 'center', justifyContent: 'center'}}>
+                        style={{height: 300, backgroundColor: '#33BC61', alignItems: 'center', justifyContent: 'center'}}>
                         <Image style={{height: 260, width: 200}} source={{uri: this.state.data.images.large}}/>
                     </View>
                     <View style={{backgroundColor: 'white'}}>
@@ -129,6 +130,11 @@ export default class MovieDetailPage extends Component {
 
                             </View>
                             <View style={{flex: 1}}>
+
+                                <RatingCard
+                                    average={this.state.data.rating.average}
+                                    numRaters={this.state.data.rating.stars}
+                                />
 
                             </View>
                         </View>

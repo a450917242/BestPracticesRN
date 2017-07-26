@@ -62,11 +62,10 @@ export default class VerticalListView extends Component {
 
     _renderItem = (item) => (
         <View style={{backgroundColor: 'white'}}>
-
-
             <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10}}>
                 <View style={{width: 100, height: 0.3, backgroundColor: 'gray'}}/>
-                <Text style={{marginLeft: 20, marginRight: 20, fontSize: 29,color:'red'}}>{parseInt(item.index) + 1}</Text>
+                <Text style={{marginLeft: 20, marginRight: 20, fontSize: 29,color:'red',fontFamily:'Serif',
+                    fontStyle :'italic'}}>{parseInt(item.index) + 1}</Text>
                 <View style={{width: 100, height: 0.3, backgroundColor: 'gray'}}/>
             </View>
 

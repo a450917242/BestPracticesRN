@@ -9,8 +9,7 @@ import {TabNavigator} from 'react-navigation';
 
 import Movie from '../page/MoviePage';
 import Music from '../page/MusicPage';
-import TV from '../page/TvPage';
-import Book from '../page/TvPage';
+import Book from '../page/BookPage';
 
 const HomeNav = TabNavigator({
     Movie: {
@@ -23,12 +22,6 @@ const HomeNav = TabNavigator({
         screen: Music,
         navigationOptions: {
             tabBarLabel: 'Music',
-        },
-    },
-    TV: {
-        screen: TV,
-        navigationOptions: {
-            tabBarLabel: 'TV'
         },
     },
     Book: {
