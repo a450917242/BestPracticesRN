@@ -5,9 +5,10 @@
 
 import React, {Component} from 'react';
 
-import {View, WebView,StyleSheet,Text} from 'react-native';
+import {View, WebView,StyleSheet,Text,ToastAndroid} from 'react-native';
 
 import Api from '../util/Api';
+import ToolBar from "../components/ToolBar";
 
 let data = require('../localdata/only.json');
 
@@ -80,6 +81,8 @@ export default class MovieCelebrityPage extends Component {
 
     render() {
 
+        let navigation = this.props.navigation;
+
         if (!this.state.done) {
             return (
                 <View style={styles.container}>
@@ -90,6 +93,13 @@ export default class MovieCelebrityPage extends Component {
 
             return (
                     <View style={{flex:1,backgroundColor: 'white'}}>
+                        <ToolBar
+                            onTab={false}
+                            title={this.props.navigation.state.params.name}
+                            type="Movie"
+                            navigation={navigation}
+                        />
+
                         <WebView
                             showsVerticalScrollIndicator={false}
                             source={{uri:this.state.mobile_url}}

@@ -9,7 +9,6 @@ import {
     ToastAndroid,
     Dimensions,
     ScrollView,
-    TouchableOpacity,
 } from 'react-native';
 
 import Api from '../util/Api';
@@ -18,7 +17,7 @@ const screenWidth = Dimensions.get('window').width;
 
 import HorizontalListView from '../components/HorizontalListView';
 import HorizontalCardView from '../components/HorizontalCardView';
-import NavigationItem from '../components/NavigationItem';
+import ToolBar from '../components/ToolBar';
 
 
 let in_threaters_data = require('../localdata/in_theaters.json');
@@ -64,7 +63,7 @@ export default class MoviePage extends Component {
 
         this.setState({
             in_theaters_subjects: resData.subjects,
-            done:true,
+            done: true,
         });
 
 
@@ -111,51 +110,62 @@ export default class MoviePage extends Component {
         } else {
             return (
 
-                <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
-                    <View style={{backgroundColor: 'white', flexDirection: 'row', alignItems: 'center'}}>
-                        <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
-                            影院热映
-                        </Text>
-                        <Text style={{flex: 1, textAlign: 'right', fontSize: 15, color: 'green', margin: 10}}>
-                            更多>
-                        </Text>
-                    </View>
-                    <HorizontalListView subjects={this.state.in_theaters_subjects}
-                                        appNavigation={appNavigation}
-                                        type='in_theaters'/>
 
-                    <View style={{
-                        backgroundColor: 'white',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        marginTop: 20
-                    }}>
-                        <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
-                            即将上映
-                        </Text>
-                        <Text style={{flex: 1, textAlign: 'right', fontSize: 15, color: 'green', margin: 10}}>
-                            更多>
-                        </Text>
-                    </View>
-                    <HorizontalListView
-                        subjects={this.state.coming_soon_subjects}
-                        appNavigation={appNavigation}
-                        type='coming_soon'
+                <View style={{flex: 1}}>
+
+
+                    <ToolBar
+                        onTab={true}
+                        title="Movie"
+                        type="Movie"
+                        navigation={appNavigation}
                     />
 
-                    <View style={{
-                        backgroundColor: 'white',
-                        flexDirection: 'row',
-                        alignItems: 'center',
-                        marginTop: 20
-                    }}>
-                        <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
-                            精选榜单
-                        </Text>
-                    </View>
-                    <HorizontalCardView subjects={this.state.selected_collections } appNavigation={appNavigation}/>
-                </ScrollView>
+                    <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
+                        <View style={{backgroundColor: 'white', flexDirection: 'row', alignItems: 'center'}}>
+                            <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
+                                影院热映
+                            </Text>
+                            <Text style={{flex: 1, textAlign: 'right', fontSize: 15, color: 'green', margin: 10}}>
+                                更多>
+                            </Text>
+                        </View>
+                        <HorizontalListView subjects={this.state.in_theaters_subjects}
+                                            appNavigation={appNavigation}
+                                            type='in_theaters'/>
 
+                        <View style={{
+                            backgroundColor: 'white',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginTop: 20
+                        }}>
+                            <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
+                                即将上映
+                            </Text>
+                            <Text style={{flex: 1, textAlign: 'right', fontSize: 15, color: 'green', margin: 10}}>
+                                更多>
+                            </Text>
+                        </View>
+                        <HorizontalListView
+                            subjects={this.state.coming_soon_subjects}
+                            appNavigation={appNavigation}
+                            type='coming_soon'
+                        />
+
+                        <View style={{
+                            backgroundColor: 'white',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            marginTop: 20
+                        }}>
+                            <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
+                                精选榜单
+                            </Text>
+                        </View>
+                        <HorizontalCardView subjects={this.state.selected_collections } appNavigation={appNavigation}/>
+                    </ScrollView>
+                </View>
             );
         }
     }

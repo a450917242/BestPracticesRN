@@ -44,6 +44,7 @@ export default class HorizontalSimpleView extends Component {
             <TouchableNativeFeedback onPress={() => {
                 this.props.navigation.navigate('MovieCelebrity', {
                     id: item.item.id,
+                    name: item.item.name,
                 });
             }}>
                 <View style={{backgroundColor: 'white', alignItems: 'center', margin: 10}}>

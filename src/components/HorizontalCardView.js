@@ -79,28 +79,17 @@ export default class HorizontalListView extends Component {
                         }}>{item.item.description}
                     </Text>
 
-
-                    <Image style={{width: 100, height: 100}}>
-                        source={{uri: item.item.covers[0]}}
-                    </Image>
-
-                    {/*<View style={{flex: 1, flexDirection: 'row', backgroundColor: 'white'}}>*/}
-                    {/*<Image style={{width: 50, height: 80}}>*/}
-                    {/*source={{uri: item.item.covers[0]}}*/}
-                    {/*</Image>*/}
-                    {/*<Image style={{width: 50, height: 80}}>*/}
-                    {/*source={{uri: item.item.covers[1]}}*/}
-                    {/*</Image>*/}
-                    {/*<Image style={{width: 50, height: 80}}>*/}
-                    {/*source={{uri: item.item.covers[2]}}*/}
-                    {/*</Image>*/}
-                    {/*</View>*/}
-
+                    <View style={{flex: 1, flexDirection: 'row', alignItems: 'center'}}>
+                        <Image style={{width: 50, height: 80}}
+                               source={{uri: item.item.covers[0]}}/>
+                        <Image style={{width: 60, height: 100}}
+                               source={{uri: item.item.covers[1]}}/>
+                        <Image style={{width: 50, height: 80}}
+                               source={{uri: item.item.covers[2]}}/>
+                    </View>
                 </View>
             </View>
-        </TouchableNativeFeedback>
-
-    )
+        </TouchableNativeFeedback>);
 
     _keyExtractor = (item) => item.id;
 

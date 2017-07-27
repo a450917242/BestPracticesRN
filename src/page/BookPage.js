@@ -9,6 +9,7 @@ import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView} from 'react-nat
 
 import Api from '../util/Api';
 import RatingCard from "../components/RatingCard";
+import ToolBar from "../components/ToolBar";
 
 let data = require('../localdata/book.json');
 
@@ -40,8 +41,6 @@ export default class BookPage extends Component {
 
 
         let temps = [];
-
-
 
 
         this.setState({
@@ -77,6 +76,9 @@ export default class BookPage extends Component {
 
 
     render() {
+
+        let appNavigation = this.props.screenProps.appNavigation;
+
         if (!this.state.done) {
             return (
                 <View style={styles.container}>
@@ -86,88 +88,98 @@ export default class BookPage extends Component {
         } else {
 
             return (
-                <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
-                    <View
-                        style={{
-                            height: 300,
-                            backgroundColor: '#33BC61',
-                            alignItems: 'center',
-                            justifyContent: 'center'
-                        }}>
-                        <Image style={{height: 260, width: 200}} source={{uri: this.state.data.images.large}}/>
-                    </View>
-                    <View style={{backgroundColor: 'white'}}>
-                        {/*信息*/}
-                        <View style={{margin: 10, flexDirection: 'row'}}>
-                            <View style={{flex: 3}}>
-                                <Text style={{
+
+                <View style={{flex: 1}}>
+                    <ToolBar
+                        onTab={true}
+                        title="Book"
+                        type="Book"
+                        navigation={appNavigation}
+                    />
+
+                    <ScrollView style={{flex: 1}} showsVerticalScrollIndicator={false}>
+                        <View
+                            style={{
+                                height: 300,
+                                backgroundColor: '#33BC61',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                            <Image style={{height: 260, width: 200}} source={{uri: this.state.data.images.large}}/>
+                        </View>
+                        <View style={{backgroundColor: 'white'}}>
+                            {/*信息*/}
+                            <View style={{margin: 10, flexDirection: 'row'}}>
+                                <View style={{flex: 3}}>
+                                    <Text style={{
+                                        textAlign: 'left',
+                                        color: 'black',
+                                        fontWeight: 'normal',
+                                        fontSize: 18,
+                                        marginTop: 2
+                                    }}>{this.state.data.title}</Text>
+
+                                    <View style={{flexDirection: 'row'}}>
+                                        <Text style={{marginTop: 5}}>作者：</Text>
+                                        {this.state.data.author.map(function (author) {
+                                            return <Text style={{marginTop: 5}} key={author}>{author} </Text>
+                                        })}
+                                    </View>
+                                    <View style={{flexDirection: 'row'}}>
+                                        <Text style={{marginTop: 5}}>出版社：</Text>
+                                        <Text style={{marginTop: 5}}>{this.state.data.publisher} </Text>
+                                    </View>
+                                    <View style={{flexDirection: 'row'}}>
+                                        <Text style={{marginTop: 5}}>出版时间：</Text>
+                                        <Text style={{marginTop: 5}}>{this.state.data.pubdate} </Text>
+                                    </View>
+                                </View>
+                                <View style={{flex: 1}}>
+                                    <RatingCard
+                                        average={this.state.data.rating.average}
+                                        numRaters={this.state.data.rating.numRaters}
+                                    />
+                                </View>
+                            </View>
+                            {/*summary*/}
+                            <Text style={{
+                                textAlign: 'left',
+                                fontWeight: 'normal',
+                                fontSize: 12,
+                                marginLeft: 10
+                            }}>简介</Text>
+                            <Text
+                                numberOfLines={10}
+                                style={{
                                     textAlign: 'left',
                                     color: 'black',
                                     fontWeight: 'normal',
-                                    fontSize: 18,
-                                    marginTop: 2
-                                }}>{this.state.data.title}</Text>
+                                    fontSize: 15,
+                                    margin: 10
+                                }}>{this.state.data.summary}</Text>
+                            <Text style={{
+                                textAlign: 'left',
+                                fontWeight: 'normal',
+                                fontSize: 12,
+                                marginLeft: 10,
+                                marginTop: 10,
+                            }}>作者简介</Text>
 
-                                <View style={{flexDirection: 'row'}}>
-                                    <Text style={{marginTop: 5}}>作者：</Text>
-                                    {this.state.data.author.map(function (author) {
-                                        return <Text style={{marginTop: 5}} key={author}>{author} </Text>
-                                    })}
-                                </View>
-                                <View style={{flexDirection: 'row'}}>
-                                    <Text style={{marginTop: 5}}>出版社：</Text>
-                                    <Text style={{marginTop: 5}}>{this.state.data.publisher} </Text>
-                                </View>
-                                <View style={{flexDirection: 'row'}}>
-                                    <Text style={{marginTop: 5}}>出版时间：</Text>
-                                    <Text style={{marginTop: 5}}>{this.state.data.pubdate} </Text>
-                                </View>
-                            </View>
-                            <View style={{flex: 1}}>
-                                <RatingCard
-                                    average={this.state.data.rating.average}
-                                    numRaters={this.state.data.rating.numRaters}
-                                />
-                            </View>
+                            <Text
+                                numberOfLines={10}
+                                style={{
+                                    textAlign: 'left',
+                                    color: 'black',
+                                    fontWeight: 'normal',
+                                    fontSize: 15,
+                                    margin: 10
+                                }}>{this.state.data.author_intro}</Text>
+
+
                         </View>
-                        {/*summary*/}
-                        <Text style={{
-                            textAlign: 'left',
-                            fontWeight: 'normal',
-                            fontSize: 12,
-                            marginLeft: 10
-                        }}>简介</Text>
-                        <Text
-                            numberOfLines={10}
-                            style={{
-                                textAlign: 'left',
-                                color: 'black',
-                                fontWeight: 'normal',
-                                fontSize: 15,
-                                margin: 10
-                            }}>{this.state.data.summary}</Text>
-                        <Text style={{
-                            textAlign: 'left',
-                            fontWeight: 'normal',
-                            fontSize: 12,
-                            marginLeft: 10,
-                            marginTop: 10,
-                        }}>作者简介</Text>
 
-                        <Text
-                            numberOfLines={10}
-                            style={{
-                                textAlign: 'left',
-                                color: 'black',
-                                fontWeight: 'normal',
-                                fontSize: 15,
-                                margin: 10
-                            }}>{this.state.data.author_intro}</Text>
-
-
-                    </View>
-
-                </ScrollView>
+                    </ScrollView>
+                </View>
             );
 
         }

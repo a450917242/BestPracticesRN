@@ -30,6 +30,8 @@ class BottomTextComponent extends Component {
 
     render() {
 
+
+
         if (this.props.show) {
             return (
                 <View>
@@ -44,7 +46,7 @@ class BottomTextComponent extends Component {
                             marginTop: 2
                         }}>{  this.props.item.item.rating.average == 0 ? '暂无评分' : this.props.item.item.rating.average }</Text>
                 </View>
-            )
+            );
         } else {
             return (
                 <View style={{flexDirection: 'row', width: 120}}>

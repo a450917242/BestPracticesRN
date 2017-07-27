@@ -10,6 +10,7 @@ import {View, StyleSheet, Text, ToastAndroid} from 'react-native';
 import VerticalListView from '../components/VerticalListView';
 
 import Api from '../util/Api';
+import ToolBar from "../components/ToolBar";
 
 
 let data ;
@@ -98,6 +99,12 @@ export default class RankListPage extends Component {
 
             return (
                 <View style={{flex: 1, backgroundColor: 'white'}}>
+                    <ToolBar
+                        onTab={false}
+                        title={this.props.navigation.state.params.name}
+                        type="Movie"
+                        navigation={navigation}
+                    />
                     <VerticalListView subjects={this.state.subjects } navigation={navigation}/>
                 </View>
 
