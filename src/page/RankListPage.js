@@ -13,7 +13,7 @@ import Api from '../util/Api';
 import ToolBar from "../components/ToolBar";
 
 
-let data ;
+let data;
 
 
 export default class RankListPage extends Component {
@@ -34,7 +34,7 @@ export default class RankListPage extends Component {
             data = require('../localdata/top250.json')
         } else if (id == 'movie_high_box_office') {
             subUrl = 'us_box';
-        }else {
+        } else {
             subUrl = 'top250';
         }
 
@@ -75,7 +75,6 @@ export default class RankListPage extends Component {
         console.log(resData);
 
 
-
         this.setState({
             subjects: data.subjects,
             done: true,
@@ -105,7 +104,10 @@ export default class RankListPage extends Component {
                         type="Movie"
                         navigation={navigation}
                     />
-                    <VerticalListView subjects={this.state.subjects } navigation={navigation}/>
+                    <VerticalListView
+                        showIndex={true}
+                        subjects={this.state.subjects }
+                        navigation={navigation}/>
                 </View>
 
             )

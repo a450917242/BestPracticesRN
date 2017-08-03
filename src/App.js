@@ -10,7 +10,7 @@ import {
 import AppNav from './nav/AppNav';
 
 
-export default class BestPracticesRN extends Component {
+export default class App extends Component {
 
     constructor(props){
         super(props);
@@ -25,4 +25,4 @@ export default class BestPracticesRN extends Component {
 }
 
 
-AppRegistry.registerComponent('BestPracticesRN', () => BestPracticesRN);
+AppRegistry.registerComponent('BestPracticesRN', () => App);

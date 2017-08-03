@@ -62,12 +62,16 @@ export default class VerticalListView extends Component {
 
     _renderItem = (item) => (
         <View style={{backgroundColor: 'white'}}>
-            <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10}}>
-                <View style={{width: 100, height: 0.3, backgroundColor: 'gray'}}/>
-                <Text style={{marginLeft: 20, marginRight: 20, fontSize: 29,color:'red',fontFamily:'Serif',
-                    fontStyle :'italic'}}>{parseInt(item.index) + 1}</Text>
-                <View style={{width: 100, height: 0.3, backgroundColor: 'gray'}}/>
-            </View>
+
+            {this.props.showIndex ? (
+                <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'center', marginTop: 10}}>
+                    <View style={{width: 100, height: 0.3, backgroundColor: 'gray'}}/>
+                    <Text style={{
+                        marginLeft: 20, marginRight: 20, fontSize: 29, color: 'red', fontFamily: 'Serif',
+                        fontStyle: 'italic'
+                    }}>{parseInt(item.index) + 1}</Text>
+                    <View style={{width: 100, height: 0.3, backgroundColor: 'gray'}}/>
+                </View>) : (<View/>)}
 
 
             <TouchableNativeFeedback onPress={() => {
@@ -77,7 +81,13 @@ export default class VerticalListView extends Component {
             }}>
 
 
-                <View style={{backgroundColor: 'white', margin: 20, flexDirection: 'row',borderRadius:5,borderWidth:0.1}}>
+                <View style={{
+                    backgroundColor: 'white',
+                    margin: 20,
+                    flexDirection: 'row',
+                    borderRadius: 5,
+                    borderWidth: 0.1
+                }}>
                     <Image resizeMode={'stretch'} style={{width: 110, height: 150, margin: 10}}
                            source={{uri: item.item.images.large}}/>
 

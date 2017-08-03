@@ -138,8 +138,8 @@ export default class MovieDetailPage extends Component {
 
                                     <View style={{flexDirection: 'row'}}>
                                         <Text style={{marginTop: 5}}>{this.state.data.year}</Text>
-                                        {this.state.data.genres.map(function (gener) {
-                                            return <Text style={{marginTop: 5}} key={gener}>/{gener}</Text>
+                                        {this.state.data.genres.map(function (gener,index) {
+                                            return <Text style={{marginTop: 5}} key={index}>/{gener}</Text>
                                         })}
                                     </View>
 

@@ -18,6 +18,7 @@ const screenWidth = Dimensions.get('window').width;
 import HorizontalListView from '../components/HorizontalListView';
 import HorizontalCardView from '../components/HorizontalCardView';
 import ToolBar from '../components/ToolBar';
+import MoreView from "../components/MoreView";
 
 
 let in_threaters_data = require('../localdata/in_theaters.json');
@@ -46,7 +47,7 @@ export default class MoviePage extends Component {
 
     componentDidMount() {
 
-        // Api.Get(this.state.url_in_theaters, null, this.in_theaters_success, this._error);
+        // Api.Get(this.state.url_in_theaters, null, this._success, this._error);
         // Api.Get(this.state.url_coming_soon, null, this.coming_soon_success, this._error);
 
         this._error();
@@ -126,9 +127,7 @@ export default class MoviePage extends Component {
                             <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
                                 影院热映
                             </Text>
-                            <Text style={{flex: 1, textAlign: 'right', fontSize: 15, color: 'green', margin: 10}}>
-                                更多>
-                            </Text>
+                            <MoreView type="Now" appNavigation={appNavigation}/>
                         </View>
                         <HorizontalListView subjects={this.state.in_theaters_subjects}
                                             appNavigation={appNavigation}
@@ -143,9 +142,7 @@ export default class MoviePage extends Component {
                             <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
                                 即将上映
                             </Text>
-                            <Text style={{flex: 1, textAlign: 'right', fontSize: 15, color: 'green', margin: 10}}>
-                                更多>
-                            </Text>
+                            <MoreView type="Future" appNavigation={appNavigation}/>
                         </View>
                         <HorizontalListView
                             subjects={this.state.coming_soon_subjects}

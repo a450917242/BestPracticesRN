@@ -67,7 +67,7 @@ export default class HorizontalSimpleView extends Component {
 
     )
 
-    _keyExtractor = (item) => item.id;
+    _keyExtractor = (item,index) => index;
 
 
     render() {

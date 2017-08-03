@@ -40,9 +40,10 @@ const HomeNav = TabNavigator({
         indicatorStyle: {
             height: 0,
         },
-        style:{
-            backgroundColor:'#33BC61'
-        }
+
+        activeTintColor: '#33BC61',
+        inactiveTintColor: 'black',
+        style: {backgroundColor: 'white', borderTopColor: 'black', borderTopWidth: 0.15},
     },
 
 
