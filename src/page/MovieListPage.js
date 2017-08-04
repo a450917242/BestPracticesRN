@@ -20,7 +20,7 @@ export default class MovieListPage extends Component {
 
         let type = this.props.navigation.state.params.type;
 
-        let showfirst = type == "Now";
+        let showLeft = type == "Now";
 
 
         let navigation = this.props.navigation;
@@ -34,7 +34,7 @@ export default class MovieListPage extends Component {
                     navigation={navigation}
                 />
 
-                {showfirst ? (<MovieNav1 screenProps={{appNavigation: this.props.navigation,}}
+                {showLeft ? (<MovieNav1 screenProps={{appNavigation: this.props.navigation,}}
                 />) : (<MovieNav2 screenProps={{appNavigation: this.props.navigation,}}
                 />)}
 
@@ -46,12 +46,20 @@ export default class MovieListPage extends Component {
 }
 
 
+//TODO  默认页面是否可由参数控制，直接由一个TabNavigator完成
+
 const MovieNav1 = TabNavigator({
     Now: {
-        screen: MovieNow
+        screen: MovieNow,
+        navigationOptions: {
+            tabBarLabel: '正在热映'
+        }
     },
     Future: {
-        screen: MovieFuture
+        screen: MovieFuture,
+        navigationOptions: {
+            tabBarLabel: '即将上映'
+        }
     }
 }, {
     lazy: true,
@@ -71,10 +79,16 @@ const MovieNav1 = TabNavigator({
 });
 const MovieNav2 = TabNavigator({
     Now: {
-        screen: MovieNow
+        screen: MovieNow,
+        navigationOptions: {
+            tabBarLabel: '正在热映'
+        }
     },
     Future: {
-        screen: MovieFuture
+        screen: MovieFuture,
+        navigationOptions: {
+            tabBarLabel: '即将上映'
+        }
     }
 }, {
     lazy: true,

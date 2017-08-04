@@ -39,7 +39,7 @@ export default class ToolBar extends Component {
         return (
             <View style={{
                 flexDirection: 'row',
-                backgroundColor: 'white',
+                backgroundColor: '#33BC61',
                 height: 56,
                 borderWidth: 0.2,
                 alignItems: 'center',
@@ -50,26 +50,18 @@ export default class ToolBar extends Component {
                 {onTab ? (<View style={{width: 30, height: 30, marginLeft: 10}}/>) : (
                     <TouchableOpacity onPress={this._back}>
                         <Image style={{width: 30, height: 30, marginLeft: 10}}
-                               source={require('../images/back.png')}/>
+                               source={require('../images/ic_bar_back_white.png')}/>
                     </TouchableOpacity>)
                 }
 
 
                 <View style={{flex: 1}}/>
-                <Text style={{color: 'black', fontSize: 25}}>
+                <Text style={{color: 'white', fontSize: 25}}>
                     {this.props.title}
                 </Text>
                 <View style={{flex: 1}}/>
 
-
-                {onTab ? (
-                    <TouchableOpacity onPress={this._goSearch}>
-                        <Image style={{width: 30, height: 30, marginRight: 10}}
-                               source={require('../images/search.png')}/>
-                    </TouchableOpacity>
-                ) : (
-                    <View style={{width: 30, height: 30, marginRight: 10}}/>
-                )}
+                <View style={{width: 30, height: 30, marginRight: 10}}/>
 
 
             </View>
