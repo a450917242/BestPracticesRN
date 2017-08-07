@@ -26,15 +26,16 @@ export default class MainToolBar extends Component {
         type = this.props.type;
     }
 
-    _back = () => {
-        this.props.navigation.goBack();
-    };
 
     _goSearch = () => {
         this.props.navigation.navigate('Search', {
             type: type,
         })
-    }
+    };
+
+    _goScan = () => {
+        this.props.navigation.navigate('Camera');
+    };
 
     render() {
         let onTab = this.props.onTab;
@@ -46,34 +47,40 @@ export default class MainToolBar extends Component {
                 backgroundColor: '#33BC61',
                 height: 56,
                 alignItems: 'center',
-                borderWidth: 0.2,
+                borderBottomWidth:0.2,
             }}>
 
 
-                <TouchableWithoutFeedback onPress={this._goSearch}>
-                    <View style={{
-                        flexDirection: 'row',
-                        flex: 1,
-                        alignItems: 'center',
-                        justifyContent: 'space-between',
-                        marginLeft: 12,
-                        marginRight: 12,
-                        marginTop: 8,
-                        marginBottom: 8,
-                        backgroundColor: 'white',
-                        borderRadius: 5
-                    }}>
-                        <Image style={{width: 20, height: 20, margin: 10}}
-                               source={require('../images/ic_search_gray.png')}/>
+                <View style={{
+                    flexDirection: 'row',
+                    flex: 1,
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    marginLeft: 12,
+                    marginRight: 12,
+                    marginTop: 8,
+                    marginBottom: 8,
+                    backgroundColor: 'white',
+                    borderRadius: 5
+                }}>
+                    <Image style={{width: 20, height: 20, margin: 10}}
+                           source={require('../images/ic_search_gray.png')}/>
 
-                        <Text style={{color: 'gray', fontSize: 17}}>
-                            {title}
-                        </Text>
 
+                    <TouchableWithoutFeedback onPress={this._goSearch}>
+                        <View>
+                            <Text style={{color: 'gray', fontSize: 17}}>
+                                {title}
+                            </Text>
+                        </View>
+                    </TouchableWithoutFeedback>
+                    <TouchableWithoutFeedback onPress={this._goScan}>
                         <Image style={{width: 20, height: 20, margin: 10}}
                                source={require('../images/ic_scan_gray.png')}/>
-                    </View>
-                </TouchableWithoutFeedback>
+                    </TouchableWithoutFeedback>
+
+
+                </View>
 
 
                 <TouchableOpacity onPress={() => {

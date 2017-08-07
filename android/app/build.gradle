@@ -139,6 +139,8 @@ dependencies {
 
     // 如果只需要支持WebP格式而不需要动图
     compile 'com.facebook.fresco:webpsupport:1.0.1'
+
+    compile project(':react-native-camera')
 }
 
 // Run this once to be able to run the application with BUCK

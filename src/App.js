@@ -4,6 +4,8 @@
 import React, {Component} from 'react';
 import {
     AppRegistry,
+    StatusBar,
+    View,
 } from 'react-native';
 
 
@@ -19,7 +21,14 @@ export default class App extends Component {
 
     render() {
         return (
-            <AppNav screenProps={{navigation: this.props.navigation}}/>
+            <View style={{flex:1}}>
+                <StatusBar
+                    backgroundColor={'#33BC61'}
+                    translucent={false}
+                />
+                <AppNav screenProps={{navigation: this.props.navigation}}/>
+            </View>
+
         );
     }
 }

@@ -41,7 +41,7 @@ export default class ToolBar extends Component {
                 flexDirection: 'row',
                 backgroundColor: '#33BC61',
                 height: 56,
-                borderWidth: 0.2,
+                borderBottomWidth: 0.2,
                 alignItems: 'center',
                 justifyContent: 'center'
             }}>
