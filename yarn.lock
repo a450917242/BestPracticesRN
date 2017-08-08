@@ -10,6 +10,12 @@ absolute-path@^0.0.0:
   version "0.0.0"
   resolved "https://registry.yarnpkg.com/absolute-path/-/absolute-path-0.0.0.tgz#a78762fbdadfb5297be99b15d35a785b2f095bf7"
 
+ac-qrcode@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ac-qrcode/-/ac-qrcode-1.0.1.tgz#46978c21e809fe5f603eeb6f14a2b7511c8dcd90"
+  dependencies:
+    react-native-camera "^0.7.0"
+
 accepts@~1.2.12, accepts@~1.2.13:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.2.13.tgz#e5f1f3928c6d95fd96558c36ec3d9d0de4a6ecea"
@@ -3069,6 +3075,10 @@ react-devtools-core@2.3.1:
 react-native-camera@0.6:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.6.0.tgz#dd2760b7857d660761c78f2da575b494fdc8dcb5"
+
+react-native-camera@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-0.7.0.tgz#a033a80b73fb1d56c2459a829f65a6f8f1a7328c"
 
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
