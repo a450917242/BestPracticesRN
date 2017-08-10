@@ -46,7 +46,7 @@ export default class MovieListPage extends Component {
 }
 
 
-//TODO  默认页面是否可由参数控制，直接由一个TabNavigator完成
+//TODO  默认页面是否可由参数控制，直接由一个TabNavigator完成 ???
 
 const MovieNav1 = TabNavigator({
     Now: {

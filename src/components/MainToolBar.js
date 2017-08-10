@@ -38,16 +38,12 @@ export default class MainToolBar extends Component {
     };
 
     render() {
-        let onTab = this.props.onTab;
-        let type = this.props.type;
-
         return (
             <View style={{
                 flexDirection: 'row',
                 backgroundColor: '#33BC61',
                 height: 56,
                 alignItems: 'center',
-                borderBottomWidth:0.2,
             }}>
 
 

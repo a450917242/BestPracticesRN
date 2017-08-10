@@ -10,7 +10,7 @@ import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView} from 'react-nat
 import Api from '../util/Api';
 
 import RatingCard from '../components/RatingCard';
-import ToolBar from "../components/ToolBar";
+import MainToolBar from "../components/MainToolBar";
 
 let data = require('../localdata/music.json');
 
@@ -89,7 +89,7 @@ export default class MusicPage extends Component {
 
             return (
                 <View style={{flex:1}}>
-                    <ToolBar
+                    <MainToolBar
                         onTab={true}
                         title="Music"
                         type="Music"

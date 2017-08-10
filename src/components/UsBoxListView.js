@@ -47,7 +47,7 @@ class HText extends Component {
 }
 
 
-export default class VerticalListView extends Component {
+export default class UsBoxListView extends Component {
 
     constructor(props) {
         super(props);
@@ -89,7 +89,7 @@ export default class VerticalListView extends Component {
                     borderWidth: 0.1
                 }}>
                     <Image resizeMode={'stretch'} style={{width: 110, height: 150, margin: 10}}
-                           source={{uri: item.item.images.large}}/>
+                           source={{uri: item.item.subject.images.large}}/>
 
                     <View style={{marginLeft: 10, flex: 1}}>
                         <Text
@@ -102,28 +102,33 @@ export default class VerticalListView extends Component {
                                 color: 'black',
                                 fontWeight: 'bold',
                                 fontSize: 15,
-                            }}>{item.item.title}
+                            }}>{item.item.subject.title}
                         </Text>
 
 
                         <Text
-                            style={{marginBottom: 10}}>{item.item.rating.average == 0 ? "" : item.item.rating.average}</Text>
+                            style={{marginBottom: 10}}>{item.item.subject.rating.average == 0 ? "" : item.item.subject.rating.average}</Text>
                         <HText
                             bage='导演'
-                            items={item.item.directors}/>
+                            items={item.item.subject.directors}/>
                         <HText
                             bage='演员'
-                            items={item.item.casts}/>
+                            items={item.item.subject.casts}/>
 
                     </View>
 
                 </View>
             </TouchableNativeFeedback>
+
+            <Text style={{marginLeft: 20, fontSize: 15}}>
+                票房{parseInt(item.item.box) / 1000}万美元
+            </Text>
+
         </View>
 
     );
 
-    _keyExtractor = (item) => item.id;
+    _keyExtractor = (item) => item.rank;
 
 
     render() {

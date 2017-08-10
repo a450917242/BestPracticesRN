@@ -50,10 +50,10 @@ export default class MoviePage extends Component {
 
     componentDidMount() {
 
-        Api.Get(this.state.url_in_theaters, null, this._success, this._error);
-        Api.Get(this.state.url_coming_soon, null, this.coming_soon_success, this._error);
+        // Api.Get(this.state.url_in_theaters, null, this._success, this._error);
+        // Api.Get(this.state.url_coming_soon, null, this.coming_soon_success, this._error);
 
-        // this._error();
+        this._error();
 
     }
 

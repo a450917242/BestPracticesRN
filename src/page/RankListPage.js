@@ -8,6 +8,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Text, ToastAndroid} from 'react-native';
 
 import VerticalListView from '../components/VerticalListView';
+import UsBoxListView from '../components/UsBoxListView';
 
 import Api from '../util/Api';
 import ToolBar from "../components/ToolBar";
@@ -15,7 +16,7 @@ import ToolBar from "../components/ToolBar";
 
 let data;
 
-
+let subUrl = '';
 export default class RankListPage extends Component {
 
     constructor(props) {
@@ -27,12 +28,13 @@ export default class RankListPage extends Component {
 
         // let id = 'movie_top250';
 
-        let subUrl = '';
 
-        if (id == 'movie_top250') {
+
+        if (id === 'movie_top250') {
             subUrl = 'top250';
             data = require('../localdata/top250.json')
-        } else if (id == 'movie_high_box_office') {
+        } else if (id === 'movie_high_box_office') {
+            data = require('../localdata/usbox.json');
             subUrl = 'us_box';
         } else {
             subUrl = 'top250';
@@ -58,7 +60,7 @@ export default class RankListPage extends Component {
 
     _success = (resData) => {
         console.log('成功');
-        console.log(resData.count);
+        console.log(resData);
 
 
         this.setState({
@@ -96,21 +98,41 @@ export default class RankListPage extends Component {
             )
         } else {
 
-            return (
-                <View style={{flex: 1, backgroundColor: 'white'}}>
-                    <ToolBar
-                        onTab={false}
-                        title={this.props.navigation.state.params.name}
-                        type="Movie"
-                        navigation={navigation}
-                    />
-                    <VerticalListView
-                        showIndex={true}
-                        subjects={this.state.subjects }
-                        navigation={navigation}/>
-                </View>
 
-            )
+            if (subUrl === 'top250') {
+                return (
+                    <View style={{flex: 1, backgroundColor: 'white'}}>
+                        <ToolBar
+                            onTab={false}
+                            title={this.props.navigation.state.params.name}
+                            type="Movie"
+                            navigation={navigation}
+                        />
+                        <VerticalListView
+                            showIndex={true}
+                            subjects={this.state.subjects}
+                            navigation={navigation}/>
+                    </View>
+
+                )
+            } else {
+                return (
+                    <View style={{flex: 1, backgroundColor: 'white'}}>
+                        <ToolBar
+                            onTab={false}
+                            title={this.props.navigation.state.params.name}
+                            type="Movie"
+                            navigation={navigation}
+                        />
+                        <UsBoxListView
+                            showIndex={true}
+                            subjects={this.state.subjects}
+                            navigation={navigation}/>
+                    </View>
+
+                )
+            }
+
 
         }
 
