@@ -44,7 +44,7 @@ class BottomTextComponent extends Component {
                             fontWeight: 'normal',
                             fontSize: 15,
                             marginTop: 2
-                        }}>{  this.props.item.item.rating.average == 0 ? '暂无评分' : this.props.item.item.rating.average }</Text>
+                        }}>{  this.props.item.item.rating.average === 0 ? '暂无评分' : this.props.item.item.rating.average }</Text>
                 </View>
             );
         } else {
@@ -69,13 +69,11 @@ export default class HorizontalListView extends Component {
 
     constructor(props) {
         super(props);
-        const subjects = this.props.subjects;
         const type = this.props.type;
 
 
         this.state = {
-            subjects: subjects,
-            show: type == 'in_theaters',
+            show: type === 'in_theaters',
         }
     }
 
@@ -123,7 +121,7 @@ export default class HorizontalListView extends Component {
                     showsHorizontalScrollIndicator={false}
                     horizontal={true}
                     keyExtractor={this._keyExtractor}
-                    data={this.state.subjects}
+                    data={this.props.subjects}
                     renderItem={this._renderItem}
                     ItemSeparatorComponent={SeparateComponent}
                 >

@@ -126,6 +126,14 @@ export default class VerticalListView extends Component {
     _keyExtractor = (item) => item.id;
 
 
+    _onRefresh =() =>{
+        console.log("onRefesh");
+    };
+
+    _onLoadMore = () =>{
+        console.log("onLoad More");
+    };
+
     render() {
 
         return (
@@ -136,6 +144,8 @@ export default class VerticalListView extends Component {
                     data={this.state.subjects}
                     renderItem={this._renderItem}
                     ItemSeparatorComponent={SeparateComponent}
+                    onRefresh={this._onRefresh}
+                    onEndReached={this._onLoadMore}
                 >
 
                 </FlatList>
