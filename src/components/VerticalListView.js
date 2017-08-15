@@ -60,7 +60,7 @@ export default class VerticalListView extends Component {
     }
 
 
-    _renderItem = (item) => (
+    _renderItem = ({item,index}) => (
         <View style={{backgroundColor: 'white'}}>
 
             {this.props.showIndex ? (
@@ -69,14 +69,14 @@ export default class VerticalListView extends Component {
                     <Text style={{
                         marginLeft: 20, marginRight: 20, fontSize: 29, color: 'red', fontFamily: 'Serif',
                         fontStyle: 'italic'
-                    }}>{parseInt(item.index) + 1}</Text>
+                    }}>{parseInt(index) + 1}</Text>
                     <View style={{width: 100, height: 0.3, backgroundColor: 'gray'}}/>
                 </View>) : (<View/>)}
 
 
             <TouchableNativeFeedback onPress={() => {
                 this.props.navigation.navigate('MovieDetail', {
-                    id: item.item.id,
+                    id: item.id,
                 });
             }}>
 
@@ -89,7 +89,7 @@ export default class VerticalListView extends Component {
                     borderWidth: 0.1
                 }}>
                     <Image resizeMode={'stretch'} style={{width: 110, height: 150, margin: 10}}
-                           source={{uri: item.item.images.large}}/>
+                           source={{uri: item.images.large}}/>
 
                     <View style={{marginLeft: 10, flex: 1}}>
                         <Text
@@ -102,18 +102,18 @@ export default class VerticalListView extends Component {
                                 color: 'black',
                                 fontWeight: 'bold',
                                 fontSize: 15,
-                            }}>{item.item.title}
+                            }}>{item.title}
                         </Text>
 
 
                         <Text
-                            style={{marginBottom: 10}}>{item.item.rating.average == 0 ? "" : item.item.rating.average}</Text>
+                            style={{marginBottom: 10}}>{item.rating.average == 0 ? "" : item.rating.average}</Text>
                         <HText
                             bage='导演'
-                            items={item.item.directors}/>
+                            items={item.directors}/>
                         <HText
                             bage='演员'
-                            items={item.item.casts}/>
+                            items={item.casts}/>
 
                     </View>
 
@@ -139,11 +139,13 @@ export default class VerticalListView extends Component {
         return (
             <View>
                 <FlatList
+
                     showsVerticalScrollIndicator={false}
                     keyExtractor={this._keyExtractor}
                     data={this.state.subjects}
                     renderItem={this._renderItem}
                     ItemSeparatorComponent={SeparateComponent}
+                    refreshing={false}
                     onRefresh={this._onRefresh}
                     onEndReached={this._onLoadMore}
                 >

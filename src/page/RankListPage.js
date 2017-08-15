@@ -29,7 +29,6 @@ export default class RankListPage extends Component {
         // let id = 'movie_top250';
 
 
-
         if (id === 'movie_top250') {
             subUrl = 'top250';
             data = require('../localdata/top250.json')
@@ -99,39 +98,26 @@ export default class RankListPage extends Component {
         } else {
 
 
-            if (subUrl === 'top250') {
-                return (
-                    <View style={{flex: 1, backgroundColor: 'white'}}>
-                        <ToolBar
-                            onTab={false}
-                            title={this.props.navigation.state.params.name}
-                            type="Movie"
-                            navigation={navigation}
-                        />
-                        <VerticalListView
-                            showIndex={true}
-                            subjects={this.state.subjects}
-                            navigation={navigation}/>
-                    </View>
+            return (
+                <View style={{flex: 1, backgroundColor: 'white'}}>
+                    <ToolBar
+                        onTab={false}
+                        title={this.props.navigation.state.params.name}
+                        type="Movie"
+                        navigation={navigation}
+                    />
 
-                )
-            } else {
-                return (
-                    <View style={{flex: 1, backgroundColor: 'white'}}>
-                        <ToolBar
-                            onTab={false}
-                            title={this.props.navigation.state.params.name}
-                            type="Movie"
-                            navigation={navigation}
-                        />
-                        <UsBoxListView
-                            showIndex={true}
-                            subjects={this.state.subjects}
-                            navigation={navigation}/>
-                    </View>
+                    {subUrl === 'top250' ? (<VerticalListView
+                        showIndex={true}
+                        subjects={this.state.subjects}
+                        navigation={navigation}/>) : (<UsBoxListView
+                        showIndex={true}
+                        subjects={this.state.subjects}
+                        navigation={navigation}/>)}
 
-                )
-            }
+                </View>
+
+            )
 
 
         }

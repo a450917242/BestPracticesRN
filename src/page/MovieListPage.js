@@ -20,7 +20,7 @@ export default class MovieListPage extends Component {
 
         let type = this.props.navigation.state.params.type;
 
-        let showLeft = type == "Now";
+        let showLeft = type === "Now";
 
 
         let navigation = this.props.navigation;

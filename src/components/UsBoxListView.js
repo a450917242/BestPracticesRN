@@ -60,7 +60,8 @@ export default class UsBoxListView extends Component {
     }
 
 
-    _renderItem = (item) => (
+    _renderItem = ({item,index}) => (
+
         <View style={{backgroundColor: 'white'}}>
 
             {this.props.showIndex ? (
@@ -69,14 +70,14 @@ export default class UsBoxListView extends Component {
                     <Text style={{
                         marginLeft: 20, marginRight: 20, fontSize: 29, color: 'red', fontFamily: 'Serif',
                         fontStyle: 'italic'
-                    }}>{parseInt(item.index) + 1}</Text>
+                    }}>{parseInt(index) + 1}</Text>
                     <View style={{width: 100, height: 0.3, backgroundColor: 'gray'}}/>
                 </View>) : (<View/>)}
 
 
             <TouchableNativeFeedback onPress={() => {
                 this.props.navigation.navigate('MovieDetail', {
-                    id: item.item.id,
+                    id: item.subject.id,
                 });
             }}>
 
@@ -89,7 +90,7 @@ export default class UsBoxListView extends Component {
                     borderWidth: 0.1
                 }}>
                     <Image resizeMode={'stretch'} style={{width: 110, height: 150, margin: 10}}
-                           source={{uri: item.item.subject.images.large}}/>
+                           source={{uri: item.subject.images.large}}/>
 
                     <View style={{marginLeft: 10, flex: 1}}>
                         <Text
@@ -102,18 +103,18 @@ export default class UsBoxListView extends Component {
                                 color: 'black',
                                 fontWeight: 'bold',
                                 fontSize: 15,
-                            }}>{item.item.subject.title}
+                            }}>{item.subject.title}
                         </Text>
 
 
                         <Text
-                            style={{marginBottom: 10}}>{item.item.subject.rating.average == 0 ? "" : item.item.subject.rating.average}</Text>
+                            style={{marginBottom: 10}}>{item.subject.rating.average == 0 ? "" : item.subject.rating.average}</Text>
                         <HText
                             bage='导演'
-                            items={item.item.subject.directors}/>
+                            items={item.subject.directors}/>
                         <HText
                             bage='演员'
-                            items={item.item.subject.casts}/>
+                            items={item.subject.casts}/>
 
                     </View>
 
@@ -121,7 +122,7 @@ export default class UsBoxListView extends Component {
             </TouchableNativeFeedback>
 
             <Text style={{marginLeft: 20, fontSize: 15}}>
-                票房{parseInt(item.item.box) / 1000}万美元
+                票房{parseInt(item.box) / 1000}万美元
             </Text>
 
         </View>
