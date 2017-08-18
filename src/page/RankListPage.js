@@ -50,10 +50,6 @@ export default class RankListPage extends Component {
 
     componentDidMount() {
         Api.Get(this.state.url, null, this._success, this._error)
-
-
-        // this._error();
-
     }
 
 
@@ -82,11 +78,11 @@ export default class RankListPage extends Component {
         })
 
 
-    }
+    };
 
 
     render() {
-        let navigation = this.props.navigation
+        let navigation = this.props.navigation;
 
 
         if (!this.state.done) {
@@ -118,8 +114,6 @@ export default class RankListPage extends Component {
                 </View>
 
             )
-
-
         }
 
     }
