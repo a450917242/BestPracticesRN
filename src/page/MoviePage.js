@@ -9,7 +9,7 @@ import {
     ToastAndroid,
     Dimensions,
     ScrollView,
-    RefreshControl,
+    RefreshControl
 } from 'react-native';
 
 import Api from '../util/Api';

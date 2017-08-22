@@ -15,6 +15,7 @@ import MovieListPage from '../page/MovieListPage';
 import RankListPage from '../page/RankListPage';
 import SearchPage from '../page/SearchPage';
 import CameraPage from '../page/CameraPage';
+import UserCenterPage from '../page/UserCenterPager';
 
 
 const AppNav = StackNavigator({
@@ -39,8 +40,11 @@ const AppNav = StackNavigator({
         Search: {
             screen: SearchPage,
         },
-        Camera:{
-            screen:CameraPage,
+        Camera: {
+            screen: CameraPage,
+        },
+        UserCenter: {
+            screen: UserCenterPage,
         }
     },
     {
