@@ -2,7 +2,7 @@
  * Created by Rookie on 2017/8/7.
  */
 'use strict';
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     StyleSheet,
     Text,
@@ -30,8 +30,15 @@ export default class CameraPage extends Component {
         const options = {};
         //options.location = ...
         this.camera.capture({metadata: options})
-            .then((data) => console.log(data))
+            .then((data) => {
+                if (this.props.navigation.state.params.getPhotos) {
+                    this.props.navigation.state.params.getPhotos(data);
+                }
+
+            })
             .catch(err => console.error(err));
+
+        this.props.navigation.goBack();
     }
 }
 
