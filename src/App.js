@@ -28,10 +28,7 @@ export default class App extends Component {
                 />
                 <AppNav screenProps={{navigation: this.props.navigation}}/>
             </View>
-
         );
     }
 }
-
-
 AppRegistry.registerComponent('BestPracticesRN', () => App);

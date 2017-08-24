@@ -8,7 +8,7 @@ import {
 
 } from 'react-native';
 
-import PopupDialog, {DialogButton, DialogTitle, SlideAnimation} from 'react-native-popup-dialog';
+import PopupDialog, {DialogButton, DialogTitle, SlideAnimation,FadeAnimation} from 'react-native-popup-dialog';
 import ImagePicker from 'react-native-image-crop-picker';
 
 let windowWidth = Dimensions.get('window').width;
@@ -45,7 +45,10 @@ export default class UserCenterPager extends Component {
             width: 300,
             height: 400,
             cropping: true
-        }).then(this.onPhotoResult);
+        }).then(this.onPhotoResult)
+            .catch((err)=>{
+                console.log(err);
+            })
     };
 
 
@@ -53,7 +56,6 @@ export default class UserCenterPager extends Component {
         return (
             <View style={styles.container}>
                 <ScrollView>
-
                     <Image style={(styles.userInfobg)} source={{uri: this.state.backgroundPhotoUri}}>
                         <TouchableOpacity onPress={() => {
                             this.popupDialog.show();
@@ -62,8 +64,6 @@ export default class UserCenterPager extends Component {
                                    source={{uri: 'http://pic.jia360.com/ueditor/jsp/upload/201609/27/17601474946123480.png'}}/>
                         </TouchableOpacity>
                     </Image>
-
-
                 </ScrollView>
 
 
@@ -72,13 +72,14 @@ export default class UserCenterPager extends Component {
                     height={200}
                     dialogTitle={<DialogTitle title="Please Select "/>}
                     actions={[<DialogButton
+                        textStyle={{color: 'red'}}
                         text="Cancel" align="center" onPress={() => {
                         this.popupDialog.dismiss()
                     }} key="button-1"/>]}
                     ref={(popupDialog) => {
                         this.popupDialog = popupDialog;
                     }}
-                    dialogAnimation={new SlideAnimation({slideFrom: 'bottom'})}
+                    dialogAnimation={new FadeAnimation({toValue:1})}
                 >
                     <View style={{alignItems: 'center', justifyContent: 'center'}}>
                         <TouchableOpacity onPress={this._openCamera}>
@@ -88,13 +89,11 @@ export default class UserCenterPager extends Component {
                         <TouchableOpacity onPress={this._openCameraRoll}>
                             <Text style={{fontSize: 20, color: 'black', margin: 10}}>CameraRoll</Text>
                         </TouchableOpacity>
-
-
                     </View>
 
                 </PopupDialog>
             </View>
-        )
+        );
     }
 }
 
