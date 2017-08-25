@@ -208,8 +208,7 @@ export default class UserCenterPager extends Component {
                     ref={(popupDialog) => {
                         this.popupDialog = popupDialog;
                     }}
-                    dialogAnimation={new FadeAnimation({toValue: 1})}
-                >
+                    dialogAnimation={new FadeAnimation({toValue: 1})}>
                     <View style={{alignItems: 'center', justifyContent: 'center'}}>
                         <TouchableOpacity onPress={this._openCamera}>
                             <Text style={{fontSize: 20, color: 'black', margin: 10}}>Camera</Text>

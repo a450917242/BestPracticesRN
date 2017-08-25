@@ -34,11 +34,14 @@ export default class CameraPage extends Component {
                 if (this.props.navigation.state.params.getPhotos) {
                     this.props.navigation.state.params.getPhotos(data);
                 }
-
+                this.props.navigation.goBack();
             })
-            .catch(err => console.error(err));
+            .catch((err) => {
+                console.error(err);
+                this.props.navigation.goBack();
+            });
 
-        this.props.navigation.goBack();
+
     }
 }
 
