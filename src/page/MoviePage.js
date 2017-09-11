@@ -9,7 +9,7 @@ import {
     ToastAndroid,
     Dimensions,
     ScrollView,
-    RefreshControl
+    RefreshControl, ActivityIndicator
 } from 'react-native';
 
 import Api from '../util/Api';
@@ -123,7 +123,7 @@ export default class MoviePage extends Component {
         if (!this.state.done) {
             return (
                 <View style={styles.container}>
-                    <Text>loading</Text>
+                    <ActivityIndicator/>
                 </View>
             )
         } else {

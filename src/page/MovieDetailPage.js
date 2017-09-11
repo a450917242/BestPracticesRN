@@ -5,7 +5,7 @@
 
 import React, {Component} from 'react';
 
-import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView} from 'react-native';
+import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView,ActivityIndicator} from 'react-native';
 
 import HorizontalSimpleView from '../components/HorizontalSimpleView';
 import Api from '../util/Api';
@@ -46,7 +46,8 @@ export default class MovieDetailPage extends Component {
 
         resData.directors.map(function (director) {
             temps.push(director)
-        })
+        });
+
 
         resData.casts.map(function (cast) {
             temps.push(cast);
@@ -98,7 +99,7 @@ export default class MovieDetailPage extends Component {
         if (!this.state.done) {
             return (
                 <View style={styles.container}>
-                    <Text>loading</Text>
+                    <ActivityIndicator/>
                 </View>
             )
         } else {

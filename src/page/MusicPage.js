@@ -5,7 +5,7 @@
 
 import React, {Component} from 'react';
 
-import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView} from 'react-native';
+import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView, ActivityIndicator} from 'react-native';
 
 import Api from '../util/Api';
 
@@ -82,7 +82,7 @@ export default class MusicPage extends Component {
         if (!this.state.done) {
             return (
                 <View style={styles.container}>
-                    <Text>loading</Text>
+                    <ActivityIndicator/>
                 </View>
             )
         } else {
