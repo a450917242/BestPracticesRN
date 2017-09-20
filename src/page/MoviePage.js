@@ -5,11 +5,9 @@ import React, {Component} from 'react';
 import {
     View,
     StyleSheet,
-    Text,
     ToastAndroid,
     Dimensions,
-    ScrollView,
-    RefreshControl, ActivityIndicator
+    ActivityIndicator
 } from 'react-native';
 
 import Api from '../util/Api';
@@ -18,9 +16,12 @@ const screenWidth = Dimensions.get('window').width;
 
 import HorizontalListView from '../components/HorizontalListView';
 import HorizontalCardView from '../components/HorizontalCardView';
-import ToolBar from '../components/ToolBar';
-import MoreView from "../components/MoreView";
 import MainToolBar from "../components/MainToolBar";
+import RefreshScrollView from '../components/RefreshScrollView';
+import VerticalSpace from '../components/widgets/VerticalSapce';
+import TitleView from '../components/widgets/TitleView';
+
+let movie_modules = require('../localdata/movie_index.json');
 
 
 let in_threaters_data = require('../localdata/in_theaters.json');
@@ -38,6 +39,8 @@ export default class MoviePage extends Component {
         this.state = {
             url_in_theaters: 'https://api.douban.com/v2/movie/in_theaters',
             url_coming_soon: 'https://api.douban.com/v2/movie/coming_soon',
+            subject_themes:[],
+            recommend_trailers:[],
             in_theaters_subjects: [],
             coming_soon_subjects: [],
             selected_collections: [],
@@ -90,10 +93,12 @@ export default class MoviePage extends Component {
         console.log('失败');
         console.log(resData);
 
-        ToastAndroid.show("请求数据失败-1", ToastAndroid.SHORT);
+        ToastAndroid.show("load-cache", ToastAndroid.SHORT);
 
 
         this.setState({
+            subject_themes:movie_modules.modules[0].data.items,
+            recommend_trailers:movie_modules.modules[6].data.items,
             in_theaters_subjects: in_threaters_data.subjects,
             coming_soon_subjects: coming_soon_data.subjects,
             selected_collections: selected_collections_data.data.selected_collections,
@@ -103,21 +108,20 @@ export default class MoviePage extends Component {
     }
 
 
+    _onRefreshData = () => {
+
+        this.setState({isRefreshing: true, done: false});
+
+        // Api.Get(this.state.url_in_theaters, null, this._success, this._error);
+        // Api.Get(this.state.url_coming_soon, null, this.coming_soon_success, this._error);
+
+        setTimeout(this._error, 1000);
+    };
+
     render() {
 
 
         let appNavigation = this.props.screenProps.appNavigation;
-
-
-        _onRefresh = () => {
-
-            this.setState({isRefreshing: true});
-
-            // Api.Get(this.state.url_in_theaters, null, this._success, this._error);
-            // Api.Get(this.state.url_coming_soon, null, this.coming_soon_success, this._error);
-
-            this._error();
-        };
 
 
         if (!this.state.done) {
@@ -140,61 +144,49 @@ export default class MoviePage extends Component {
                         navigation={appNavigation}
                     />
 
-                    <ScrollView
-                        style={{flex: 1}}
-                        showsVerticalScrollIndicator={false}
-
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={this.state.isRefreshing}
-                                onRefresh={this._onRefresh}
-                                tintColor="#ff0000"
-                                title="Loading..."
-                                titleColor="#00ff00"
-                                colors={['#ff0000', '#00ff00', '#0000ff']}
-                                progressBackgroundColor="#ffffff"
-                            />
-                        }
+                    <RefreshScrollView
+                        refreshing={this.state.isRefreshing}
+                        onRefresh={this._onRefreshData}
                     >
-                        <View style={{backgroundColor: 'white', flexDirection: 'row', alignItems: 'center'}}>
-                            <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
-                                影院热映
-                            </Text>
-                            <MoreView type="Now" appNavigation={appNavigation}/>
-                        </View>
-                        <HorizontalListView subjects={this.state.in_theaters_subjects}
-                                            appNavigation={appNavigation}
-                                            type='in_theaters'/>
 
-                        <View style={{
-                            backgroundColor: 'white',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            marginTop: 20
-                        }}>
-                            <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
-                                即将上映
-                            </Text>
-                            <MoreView type="Future" appNavigation={appNavigation}/>
-                        </View>
+                        <TitleView title="今日推荐" type="Now" appNavigation={appNavigation} needMore={true}/>
+                        <HorizontalListView
+                            subjects={this.state.subject_themes}
+                            appNavigation={appNavigation}
+                            type='subjects'/>
+                        <VerticalSpace/>
+
+                        <TitleView title="影院热映" type="Now" appNavigation={appNavigation} needMore={true}/>
+                        <HorizontalListView
+                            subjects={this.state.in_theaters_subjects}
+                            appNavigation={appNavigation}
+                            type='in_theaters'/>
+                        <VerticalSpace/>
+
+                        <TitleView title="即将上映" type="Future" appNavigation={appNavigation} needMore={true}/>
                         <HorizontalListView
                             subjects={this.state.coming_soon_subjects}
                             appNavigation={appNavigation}
                             type='coming_soon'
                         />
+                        <VerticalSpace/>
 
-                        <View style={{
-                            backgroundColor: 'white',
-                            flexDirection: 'row',
-                            alignItems: 'center',
-                            marginTop: 20
-                        }}>
-                            <Text style={{flex: 1, fontSize: 20, color: 'black', margin: 10}}>
-                                精选榜单
-                            </Text>
-                        </View>
-                        <HorizontalCardView subjects={this.state.selected_collections } appNavigation={appNavigation}/>
-                    </ScrollView>
+
+                        <TitleView title="精选榜单" needMore={false}/>
+                        <HorizontalCardView
+                            subjects={this.state.selected_collections}
+                            appNavigation={appNavigation}/>
+                        <VerticalSpace/>
+
+                        <TitleView title="热门预告片" type="Future" appNavigation={appNavigation} needMore={true}/>
+                        <HorizontalListView
+                            subjects={this.state.recommend_trailers}
+                            appNavigation={appNavigation}
+                            type='recommend_trailers'
+                        />
+                        <VerticalSpace/>
+
+                    </RefreshScrollView>
                 </View>
             );
         }

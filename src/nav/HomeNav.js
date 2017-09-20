@@ -16,30 +16,30 @@ const HomeNav = TabNavigator({
     Movie: {
         screen: Movie,
         navigationOptions: {
-            tabBarLabel: 'Movie',
+            tabBarLabel: '电影',
         },
     },
     Music: {
         screen: Music,
         navigationOptions: {
-            tabBarLabel: 'Music',
+            tabBarLabel: '音乐',
         },
     },
     Book: {
         screen: Book,
         navigationOptions: {
-            tabBarLabel: 'Book'
+            tabBarLabel: '读书'
         }
     },
     User: {
         screen: User,
         navigationOptions: {
-            tabBarLabel: 'User'
+            tabBarLabel: '我的'
         }
     }
 }, {
     lazy: true,
-    initialRouteName: 'User',
+    initialRouteName: 'Movie',
     tabBarPosition: 'bottom',//tabbar放在底部
     swipeEnabled: false,//不能滑动切换
     animationEnabled: false,//不要切换动画
