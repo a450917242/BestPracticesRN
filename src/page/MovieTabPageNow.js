@@ -5,9 +5,11 @@
 import React, {Component} from 'react';
 
 
-import {View, StyleSheet, Text, ToastAndroid} from 'react-native';
+import {View, StyleSheet, Text, ToastAndroid, ActivityIndicator} from 'react-native';
 
 import VerticalListView from "../components/VerticalListView";
+import Api from "../util/Api";
+import Loading from "../components/widgets/Loading";
 
 let in_threaters_data = require('../localdata/in_theaters.json');
 let coming_soon_data = require('../localdata/coming_soon.json');
@@ -30,9 +32,9 @@ export default class MovieTabPageNow extends Component {
 
     componentDidMount() {
 
-        // Api.Get(this.state.url_in_theaters, null, this._success, this._error);
+        Api.Get(this.state.url_in_theaters, null, this._success, this._error);
 
-        this._error();
+        // this._error();
 
     }
 
@@ -63,24 +65,18 @@ export default class MovieTabPageNow extends Component {
             Data: in_threaters_data.subjects,
             done: true,
         })
-    }
+    };
 
 
     render() {
 
-        let appNavigation = this.props.screenProps.appNavigation;
-
+        let navigation = this.props.screenProps.appNavigation;
 
         if (this.state.done) {
-
-            return ( <VerticalListView showIndex={false} subjects={this.state.Data } navigation={appNavigation}/>)
+            return ( <VerticalListView showIndex={false} subjects={this.state.Data } navigation={navigation}/>)
         } else {
-            return (<View>
-                <Text>loading</Text>
-            </View>)
+            return (<Loading/>)
         }
-
-
     }
 }
 

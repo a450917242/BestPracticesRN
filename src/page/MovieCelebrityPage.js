@@ -9,6 +9,7 @@ import {View, WebView,StyleSheet,Text,ToastAndroid} from 'react-native';
 
 import Api from '../util/Api';
 import ToolBar from "../components/ToolBar";
+import Loading from "../components/widgets/Loading";
 
 let data = require('../localdata/only.json');
 
@@ -85,9 +86,7 @@ export default class MovieCelebrityPage extends Component {
 
         if (!this.state.done) {
             return (
-                <View style={styles.container}>
-                    <Text>loading</Text>
-                </View>
+                <Loading/>
             )
         } else {
 

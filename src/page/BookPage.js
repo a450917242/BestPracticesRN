@@ -10,8 +10,11 @@ import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView, ActivityIndicat
 import Api from '../util/Api';
 import RatingCard from "../components/RatingCard";
 import MainToolBar from "../components/MainToolBar";
+import Loading from '../components/widgets/Loading';
+
 
 let data = require('../localdata/book.json');
+
 
 export default class BookPage extends Component {
 
@@ -81,9 +84,7 @@ export default class BookPage extends Component {
 
         if (!this.state.done) {
             return (
-                <View style={styles.container}>
-                    <ActivityIndicator/>
-                </View>
+                <Loading/>
             )
         } else {
 

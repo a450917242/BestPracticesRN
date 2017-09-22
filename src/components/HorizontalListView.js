@@ -13,34 +13,25 @@ import {
 } from 'react-native';
 
 
-class SeparateComponent extends Component {
-    render() {
-        return (
-            <View style={{backgroundColor: 'green', width: 10}}>
-
-            </View>
-        )
-    }
-}
 
 class MovieBoard extends Component {
 
 
     render() {
 
-        let item = this.props.item;
+        let {item} = this.props.item;
 
         return (
             <View style={{backgroundColor: 'white'}}>
 
                 <TouchableOpacity activeOpacity={0.9} onPress={() => {
                     this.props.navigation.navigate('MovieDetail', {
-                        id: item.item.id,
+                        id: item.id,
                     });
                 }}>
                     <View style={{backgroundColor: 'white', alignItems: 'center', margin: 10}}>
                         <Image resizeMode={'stretch'} style={{width: 120, height: 180}}
-                               source={{uri: item.item.images.large}}/>
+                               source={{uri: item.images.large}}/>
                         <Text
                             numberOfLines={1}
                             style={{
@@ -50,7 +41,7 @@ class MovieBoard extends Component {
                                 fontWeight: 'bold',
                                 fontSize: 15,
                                 marginTop: 2
-                            }}>{item.item.title}
+                            }}>{item.title}
                         </Text>
                         <BottomTextComponent
                             show={this.props.showRating}
@@ -62,34 +53,48 @@ class MovieBoard extends Component {
         )
     }
 }
+
 class MovieVideoBoard extends Component {
 
 
     render() {
 
-        let item = this.props.item;
+        let {item} = this.props.item;
 
         return (
             <View style={{backgroundColor: 'white'}}>
 
                 <TouchableOpacity activeOpacity={0.9} onPress={() => {
-                    this.props.navigation.navigate('MovieDetail', {
-                        id: item.item.id,
+                    this.props.navigation.navigate('MovieVideoPlay', {
+                        item: item,
                     });
                 }}>
-                    <View style={{backgroundColor: 'white', alignItems: 'center', margin: 10}}>
-                        <Image resizeMode={'stretch'} style={{width: 220, height: 180}}
-                               source={{uri: item.item.cover_url}}/>
+                    <View style={{backgroundColor: 'white', alignItems: 'flex-start', margin: 10}}>
+                        <Image
+                            resizeMode={'stretch'}
+                            style={{width: 220, height: 180, alignItems: 'center', justifyContent: 'center'}}
+                            source={{uri: item.cover_url}}>
+                            <Image style={{height: 40, width: 40}} source={require('../images/ic_ad_video_play.png')}/>
+                        </Image>
                         <Text
                             numberOfLines={1}
                             style={{
                                 width: 120,
                                 textAlign: 'left',
-                                color: 'black',
-                                fontWeight: 'bold',
-                                fontSize: 15,
+                                color: 'gray',
+                                fontWeight: 'normal',
+                                fontSize: 12,
                                 marginTop: 2
-                            }}>{item.item.title}
+                            }}>{item.subject_title}
+                        </Text>
+                        <Text
+                            numberOfLines={1}
+                            style={{
+                                width: 220,
+                                color: 'black',
+                                fontWeight: 'normal',
+                                fontSize: 14,
+                            }}>{item.title}
                         </Text>
                     </View>
                 </TouchableOpacity>
@@ -98,13 +103,12 @@ class MovieVideoBoard extends Component {
     }
 }
 
-
 class SubjectsBoard extends Component {
 
 
     render() {
 
-        let item = this.props.item;
+        let {item} = this.props.item;
 
 
         return (
@@ -112,12 +116,12 @@ class SubjectsBoard extends Component {
 
                 <TouchableOpacity activeOpacity={0.9} onPress={() => {
                     this.props.navigation.navigate('SubjectDetail', {
-                        url: item.item.target.url,
+                        item: item,
                     });
                 }}>
                     <View style={{backgroundColor: 'white', alignItems: 'center', margin: 10}}>
                         <Image resizeMode={'stretch'} style={{width: 220, height: 120}}
-                               source={{uri: item.item.target.cover_url}}>
+                               source={{uri: item.target.cover_url}}>
                             <View style={{
                                 backgroundColor: 'white',
                                 borderRadius: 5,
@@ -125,16 +129,16 @@ class SubjectsBoard extends Component {
                                 bottom: 5,
                                 left: 5
                             }}>
-                                <Text style={{padding: 2, fontSize: 10, color: 'black'}}>{item.item.theme.name}</Text>
+                                <Text style={{padding: 2, fontSize: 10, color: 'black'}}>{item.theme.name}</Text>
                             </View>
                         </Image>
-                        <View style={{backgroundColor: item.item.background_color, height: 60, width: 220}}>
+                        <View style={{backgroundColor: item.background_color, height: 60, width: 220}}>
                             <Text style={{
                                 color: 'white',
                                 fontSize: 16,
                                 margin: 5,
                                 fontWeight: 'bold'
-                            }}>{item.item.title}</Text>
+                            }}>{item.title}</Text>
                         </View>
                     </View>
                 </TouchableOpacity>
@@ -142,7 +146,6 @@ class SubjectsBoard extends Component {
         )
     }
 }
-
 
 class BottomTextComponent extends Component {
 
@@ -162,14 +165,14 @@ class BottomTextComponent extends Component {
                             fontWeight: 'normal',
                             fontSize: 15,
                             marginTop: 2
-                        }}>{this.props.item.item.rating.average === 0 ? '暂无评分' : this.props.item.item.rating.average}</Text>
+                        }}>{this.props.item.rating.average === 0 ? '暂无评分' : this.props.item.rating.average}</Text>
                 </View>
             );
         } else {
             return (
                 <View style={{flexDirection: 'row', width: 120}}>
 
-                    {this.props.item.item.genres.map(function (gener) {
+                    {this.props.item.genres.map(function (gener) {
                         return <Text key={gener}>{gener} </Text>
                     })}
 
@@ -203,7 +206,7 @@ export default class HorizontalListView extends Component {
             case 'coming_soon':
                 return (<MovieBoard item={item} showRating={false} navigation={this.props.appNavigation}/>);
             case 'subjects':
-                return (<SubjectsBoard item={item} navigation={this.props.appNavigation}/>)
+                return (<SubjectsBoard item={item} navigation={this.props.appNavigation}/>);
             case 'recommend_trailers':
                 return (<MovieVideoBoard item={item} showRating={false} navigation={this.props.appNavigation}/>)
         }
@@ -216,17 +219,13 @@ export default class HorizontalListView extends Component {
     render() {
 
         return (
-            <View>
-                <FlatList
-                    showsHorizontalScrollIndicator={false}
-                    horizontal={true}
-                    keyExtractor={this._keyExtractor}
-                    data={this.props.subjects}
-                    renderItem={this._renderItem}
-                    ItemSeparatorComponent={SeparateComponent}
-                />
-            </View>
-
+            <FlatList
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
+                keyExtractor={this._keyExtractor}
+                data={this.props.subjects}
+                renderItem={this._renderItem}
+            />
         )
     }
 }

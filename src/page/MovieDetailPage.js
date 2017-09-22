@@ -5,12 +5,14 @@
 
 import React, {Component} from 'react';
 
-import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView,ActivityIndicator} from 'react-native';
+import {View, Text, Image, StyleSheet, ToastAndroid, ScrollView, ActivityIndicator} from 'react-native';
 
 import HorizontalSimpleView from '../components/HorizontalSimpleView';
 import Api from '../util/Api';
 import RatingCard from "../components/RatingCard";
 import ToolBar from '../components/ToolBar';
+import Loading from '../components/widgets/Loading';
+
 
 let data = require('../localdata/only.json');
 
@@ -98,9 +100,7 @@ export default class MovieDetailPage extends Component {
         let navigation = this.props.navigation;
         if (!this.state.done) {
             return (
-                <View style={styles.container}>
-                    <ActivityIndicator/>
-                </View>
+                <Loading/>
             )
         } else {
 
@@ -139,7 +139,7 @@ export default class MovieDetailPage extends Component {
 
                                     <View style={{flexDirection: 'row'}}>
                                         <Text style={{marginTop: 5}}>{this.state.data.year}</Text>
-                                        {this.state.data.genres.map(function (gener,index) {
+                                        {this.state.data.genres.map(function (gener, index) {
                                             return <Text style={{marginTop: 5}} key={index}>/{gener}</Text>
                                         })}
                                     </View>

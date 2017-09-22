@@ -11,6 +11,7 @@ import Api from '../util/Api';
 
 import RatingCard from '../components/RatingCard';
 import MainToolBar from "../components/MainToolBar";
+import Loading from "../components/widgets/Loading";
 
 let data = require('../localdata/music.json');
 
@@ -81,9 +82,7 @@ export default class MusicPage extends Component {
 
         if (!this.state.done) {
             return (
-                <View style={styles.container}>
-                    <ActivityIndicator/>
-                </View>
+                <Loading/>
             )
         } else {
 

@@ -20,13 +20,14 @@ import MainToolBar from "../components/MainToolBar";
 import RefreshScrollView from '../components/RefreshScrollView';
 import VerticalSpace from '../components/widgets/VerticalSapce';
 import TitleView from '../components/widgets/TitleView';
+import Loading from '../components/widgets/Loading';
 
 let movie_modules = require('../localdata/movie_index.json');
 
 
 let in_threaters_data = require('../localdata/in_theaters.json');
 let coming_soon_data = require('../localdata/coming_soon.json');
-let selected_collections_data = require('../localdata/selected_collections.json')
+let selected_collections_data = require('../localdata/selected_collections.json');
 
 
 export default class MoviePage extends Component {
@@ -39,8 +40,8 @@ export default class MoviePage extends Component {
         this.state = {
             url_in_theaters: 'https://api.douban.com/v2/movie/in_theaters',
             url_coming_soon: 'https://api.douban.com/v2/movie/coming_soon',
-            subject_themes:[],
-            recommend_trailers:[],
+            subject_themes: [],
+            recommend_trailers: [],
             in_theaters_subjects: [],
             coming_soon_subjects: [],
             selected_collections: [],
@@ -97,15 +98,15 @@ export default class MoviePage extends Component {
 
 
         this.setState({
-            subject_themes:movie_modules.modules[0].data.items,
-            recommend_trailers:movie_modules.modules[6].data.items,
+            subject_themes: movie_modules.modules[0].data.items,
+            recommend_trailers: movie_modules.modules[6].data.items,
             in_theaters_subjects: in_threaters_data.subjects,
             coming_soon_subjects: coming_soon_data.subjects,
             selected_collections: selected_collections_data.data.selected_collections,
             done: true,
             isRefreshing: false,
         })
-    }
+    };
 
 
     _onRefreshData = () => {
@@ -126,9 +127,7 @@ export default class MoviePage extends Component {
 
         if (!this.state.done) {
             return (
-                <View style={styles.container}>
-                    <ActivityIndicator/>
-                </View>
+                <Loading/>
             )
         } else {
             return (
@@ -149,7 +148,7 @@ export default class MoviePage extends Component {
                         onRefresh={this._onRefreshData}
                     >
 
-                        <TitleView title="今日推荐" type="Now" appNavigation={appNavigation} needMore={true}/>
+                        <TitleView title="今日推荐" type="Now" appNavigation={appNavigation} needMore={false}/>
                         <HorizontalListView
                             subjects={this.state.subject_themes}
                             appNavigation={appNavigation}
@@ -198,6 +197,7 @@ export default class MoviePage extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: 'white',
         justifyContent: 'center',
         alignItems: 'center'
     },

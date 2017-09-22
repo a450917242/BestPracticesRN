@@ -17,7 +17,7 @@ import SearchPage from '../page/SearchPage';
 import CameraPage from '../page/CameraPage';
 import UserCenterPage from '../page/UserCenterPager';
 import SubjectDetailPage from '../page/SubjectDetailPage';
-
+import MovieVideoPlayPage from '../page/MovieVideoPlayPage'
 
 const AppNav = StackNavigator({
         Index: {
@@ -49,6 +49,9 @@ const AppNav = StackNavigator({
         },
         SubjectDetail: {
             screen: SubjectDetailPage,
+        },
+        MovieVideoPlay: {
+            screen: MovieVideoPlayPage,
         }
     },
     {

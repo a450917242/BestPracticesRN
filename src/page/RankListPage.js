@@ -8,10 +8,10 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Text, ToastAndroid} from 'react-native';
 
 import VerticalListView from '../components/VerticalListView';
-import UsBoxListView from '../components/UsBoxListView';
 
 import Api from '../util/Api';
 import ToolBar from "../components/ToolBar";
+import Loading from "../components/widgets/Loading";
 
 
 let data;
@@ -23,11 +23,6 @@ export default class RankListPage extends Component {
         super(props);
 
         let id = this.props.navigation.state.params.id;
-        //
-        let name = this.props.navigation.state.params.name;
-
-        // let id = 'movie_top250';
-
 
         if (id === 'movie_top250') {
             subUrl = 'top250';
@@ -83,17 +78,9 @@ export default class RankListPage extends Component {
 
     render() {
         let navigation = this.props.navigation;
-
-
         if (!this.state.done) {
-            return (
-                <View style={styles.container}>
-                    <Text>loading</Text>
-                </View>
-            )
+            return (<Loading/>)
         } else {
-
-
             return (
                 <View style={{flex: 1, backgroundColor: 'white'}}>
                     <ToolBar
@@ -103,14 +90,11 @@ export default class RankListPage extends Component {
                         navigation={navigation}
                     />
 
-                    {subUrl === 'top250' ? (<VerticalListView
+                    <VerticalListView
+                        type={subUrl}
                         showIndex={true}
                         subjects={this.state.subjects}
-                        navigation={navigation}/>) : (<UsBoxListView
-                        showIndex={true}
-                        subjects={this.state.subjects}
-                        navigation={navigation}/>)}
-
+                        navigation={navigation}/>
                 </View>
 
             )
@@ -118,12 +102,3 @@ export default class RankListPage extends Component {
 
     }
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-
-});
