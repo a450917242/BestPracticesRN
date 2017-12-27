@@ -47,8 +47,9 @@ buck-out/
 # It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
 # screenshots whenever they are needed.
 # For more information about the recommended setup visit:
-# https://github.com/fastlane/fastlane/blob/master/fastlane/docs/Gitignore.md
+# https://docs.fastlane.tools/best-practices/source-control/
 
+<<<<<<< ours
 fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots
@@ -56,3 +57,8 @@ fastlane/screenshots
 *.mp4
 
 
+=======
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+>>>>>>> theirs

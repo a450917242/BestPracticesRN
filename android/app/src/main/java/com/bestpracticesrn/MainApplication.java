@@ -31,16 +31,22 @@ public class MainApplication extends Application implements ReactApplication {
                     new RCTCameraPackage()
             );
         }
-    };
+
 
     @Override
-    public ReactNativeHost getReactNativeHost() {
-        return mReactNativeHost;
+    protected String getJSMainModuleName() {
+      return "index";
     }
+  };
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        SoLoader.init(this, /* native exopackage */ false);
-    }
+  @Override
+  public ReactNativeHost getReactNativeHost() {
+    return mReactNativeHost;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    SoLoader.init(this, /* native exopackage */ false);
+  }
 }

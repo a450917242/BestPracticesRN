@@ -13,7 +13,6 @@ import {
 } from 'react-native';
 
 
-
 class MovieBoard extends Component {
 
 
@@ -74,8 +73,11 @@ class MovieVideoBoard extends Component {
                             resizeMode={'stretch'}
                             style={{width: 220, height: 180, alignItems: 'center', justifyContent: 'center'}}
                             source={{uri: item.cover_url}}>
-                            <Image style={{height: 40, width: 40}} source={require('../images/ic_ad_video_play.png')}/>
+
                         </Image>
+
+                        <Image style={{height: 40, width: 40, position: 'absolute', alignSelf: 'center', }}
+                               source={require('../images/ic_ad_video_play.png')}/>
                         <Text
                             numberOfLines={1}
                             style={{
@@ -121,17 +123,16 @@ class SubjectsBoard extends Component {
                 }}>
                     <View style={{backgroundColor: 'white', alignItems: 'center', margin: 10}}>
                         <Image resizeMode={'stretch'} style={{width: 220, height: 120}}
-                               source={{uri: item.target.cover_url}}>
-                            <View style={{
-                                backgroundColor: 'white',
-                                borderRadius: 5,
-                                position: 'absolute',
-                                bottom: 5,
-                                left: 5
-                            }}>
-                                <Text style={{padding: 2, fontSize: 10, color: 'black'}}>{item.theme.name}</Text>
-                            </View>
-                        </Image>
+                               source={{uri: item.target.cover_url}}/>
+                        <View style={{
+                            backgroundColor: 'white',
+                            borderRadius: 5,
+                            position: 'absolute',
+                            bottom: 5,
+                            left: 5
+                        }}>
+                            <Text style={{padding: 2, fontSize: 10, color: 'black'}}>{item.theme.name}</Text>
+                        </View>
                         <View style={{backgroundColor: item.background_color, height: 60, width: 220}}>
                             <Text style={{
                                 color: 'white',
